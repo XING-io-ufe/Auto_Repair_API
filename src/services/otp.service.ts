@@ -5,6 +5,9 @@ import { PrismaClient, OTP_status_enum, OTP_type_enum, User_role_enum } from '..
 
 const prisma = new PrismaClient();
 const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) {
+    throw new Error('JWT_SECRET олдсонгүй!');
+}
 
 dotenv.config();
 
