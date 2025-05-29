@@ -1,0 +1,229 @@
+.wrapper {
+  height: 100vh;
+  background: #ededed;
+}
+.container {
+  position: relative;
+  height: 100%;
+  width: 800px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  box-shadow: -10px 0px 10px rgba(0, 0, 0, 0.1),
+    10px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.topbar {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding: 20px 20px 12px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.iconBtn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+
+.userName {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.content {
+  width: 100%;
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.bonusBox {
+  background: #1bb36d;
+  color: #fff;
+  border-radius: 8px;
+  padding: 22px 18px 18px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  min-height: 78px;
+  gap: 15px;
+}
+.bonusLabel {
+  font-size: 1.08rem;
+}
+.bonusValue {
+  font-size: 2.1rem;
+  font-weight: 700;
+}
+.barcode img {
+  height: 80px;
+}
+
+.timeOrderBtn {
+  background: #fff;
+  border: 3px solid #1bb36d;
+  color: #1bb36d;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 1.09rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.timeOrderBtn span {
+  font-size: 1.2rem;
+}
+
+.myCarsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+.addCarBtn {
+  background: #1bb36d;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 0;
+  width: 170px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.serviceSection {
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.serviceHeader {
+  font-weight: 500;
+  margin-bottom: 9px;
+  font-size: 1.04rem;
+}
+.serviceEmpty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f5f7fa;
+  border-radius: 8px;
+  padding: 20px 14px;
+  color: #212121;
+  font-size: 1rem;
+}
+.serviceTitle {
+  font-weight: 700;
+  margin: 12px 0 4px 0;
+}
+
+.drawerOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.drawer {
+  background: #e8e8e8;
+  border-radius: 0 24px 24px 0;
+  box-shadow: 2px 0 18px rgba(40, 180, 99, 0.13);
+  width: 85vw;
+  max-width: 340px;
+  min-height: 100vh;
+  padding: 18px 12px 12px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.drawerBack {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  align-self: flex-start;
+}
+.drawer ul {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0 0;
+}
+.drawer ul li {
+  padding: 12px 10px;
+  font-size: 1.08rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+.drawer ul li:hover {
+  background: #e7faf0;
+}
+.logout {
+  color: #f23;
+  font-weight: 600;
+}
+
+.bottomNav {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .container {
+    width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  .barcode img {
+    height: 50px;
+  }
+}
+@media (max-width: 800px) {
+  .bottomNav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    background: #fff;
+    border-top: 1.8px solid #eee;
+    justify-content: space-around;
+    padding: 5px 0 3px 0;
+    z-index: 40;
+  }
+  .bottomNav button {
+    background: none;
+    border: none;
+    text-align: center;
+    font-size: 1rem;
+    color: #212121;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 2px 0;
+    cursor: pointer;
+    width: 28vw;
+  }
+}

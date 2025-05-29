@@ -1,0 +1,150 @@
+.wrapper {
+  height: 100vh;
+  background: #ededed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container {
+  height: 100%;
+  width: 800px;
+  background: #fff;
+  margin: auto;
+}
+.topbar {
+  width: 100vw;
+  max-width: 800px;
+  background: #fff;
+  border-bottom: 1px solid #ececec;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px;
+  font-size: 1.08rem;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.backBtn {
+  background: none;
+  border: none;
+  font-size: 1.55rem;
+  color: #222;
+  cursor: pointer;
+  padding: 2px 10px 2px 2px;
+}
+
+.title {
+  flex: 1;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.13rem;
+}
+
+.form {
+  width: 100%;
+  max-width: 380px;
+  margin: 4rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.inputRow {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border: 1.5px solid #bbb;
+  border-radius: 9px;
+  padding: 10px 13px;
+  background: #fff;
+  margin-bottom: 6px;
+}
+
+.input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1rem;
+  flex: 1;
+  padding-left: 5px;
+}
+
+.icon {
+  min-width: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Хадгалах товч */
+.saveBtn {
+  margin: 52px 0 0 0;
+  width: 100%;
+  background: #ededed;
+  color: #222;
+  border: none;
+  border-radius: 9px;
+  font-size: 1.08rem;
+  font-weight: 600;
+  padding: 19px 0;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+.saveBtn:hover {
+  background: #d6d6d6;
+}
+
+@media (max-width: 450px) {
+  .form {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+.toast {
+  position: fixed;
+  top: 36px;
+  right: 28px;
+  min-width: 190px;
+  max-width: 340px;
+  z-index: 100;
+  padding: 13px 28px;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(40, 180, 99, 0.07);
+  font-size: 16px;
+  font-weight: 600;
+  opacity: 0.98;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  animation: toastFadeIn 0.4s;
+}
+@keyframes toastFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+  to {
+    opacity: 0.98;
+    transform: translateY(0);
+  }
+}
+.toastError {
+  background: #ff3838;
+  color: #fff;
+}
+.toastSuccess {
+  background: #1bb36d;
+  color: #fff;
+}
+.toastInfo {
+  background: #3737ef;
+  color: #fff;
+}
+@media (max-width: 600px) {
+  .toast {
+    right: 5vw;
+    left: 5vw;
+    min-width: unset;
+    max-width: 90vw;
+  }
+}

@@ -1,0 +1,45 @@
+.hero {
+  width: 100%;
+  min-height: 390px;
+  background: url("/tusul.jpg") center/cover, #222;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  color: #fff;
+  padding: 70px 0 110px;
+}
+.overlay {
+  background: rgba(0, 0, 0, 0.56);
+  padding: 38px 22px;
+  border-radius: 16px;
+  max-width: 670px;
+  text-align: center;
+  margin: 40px auto;
+}
+.subtitle {
+  font-weight: 400;
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+.title {
+  font-weight: 700;
+  font-size: 27px;
+}
+@media (max-width: 700px) {
+  .hero {
+    min-height: 200px;
+    padding: 40px 0 60px;
+  }
+  .overlay {
+    padding: 20px 5px;
+    max-width: 98vw;
+  }
+  .subtitle {
+    font-size: 22px;
+  }
+  .title {
+    font-size: 18px;
+  }
+}

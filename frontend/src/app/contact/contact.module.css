@@ -1,0 +1,121 @@
+.wrapper {
+  min-height: 100vh;
+  background: #dedede;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container {
+  width: 800px;
+  min-height: 100vh;
+  background: #fff;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.topbar {
+  width: 100%;
+  background: #fff;
+  border-bottom: 1px solid #ececec;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px;
+  font-size: 1.08rem;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+.backBtn {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  color: #222;
+  cursor: pointer;
+  padding: 2px 6px 2px 2px;
+}
+.title {
+  flex: 1;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.12rem;
+}
+.content {
+  margin: 7vh auto 0 auto;
+  padding: 0 12vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background: powderblue; */
+}
+.serviceName {
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  font-size: 2rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 38px;
+  margin-top: 24px;
+  letter-spacing: 0.07em;
+}
+.phoneBox {
+  border: 1.5px solid #1bb36d;
+  border-radius: 10px;
+  background: #fff;
+  padding: 15px 30px;
+  font-size: 1.6rem;
+  color: #222;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 80px;
+}
+.icon {
+  display: flex;
+  align-items: center;
+  color: #1bb36d;
+}
+.callBtn {
+  background: #28a745;
+  color: #fff;
+  border: none;
+  width: 100%;
+  max-width: 320px;
+  border-radius: 8px;
+  font-size: 1.13rem;
+  font-weight: 500;
+  padding: 15px 0;
+  margin: 38px auto 0 auto;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+.callBtn:hover {
+  background: #16994e;
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: 100vw;
+    min-width: unset;
+    border-radius: 0;
+  }
+  .topbar {
+    max-width: 100vw;
+    padding: 18px 3vw 10px 3vw;
+  }
+  .content {
+    padding: 0 3vw;
+  }
+  .serviceName {
+    font-size: 1.3rem;
+    margin-bottom: 24px;
+  }
+  .phoneBox {
+    font-size: 1.1rem;
+    padding: 11px 8vw;
+  }
+  .callBtn {
+    font-size: 1rem;
+    padding: 11px 0;
+    margin-top: 26px;
+  }
+}
