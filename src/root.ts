@@ -6,7 +6,7 @@ import bodyParser from 'body-parser';
 
 import { errorHandler } from './middlewares/errorHandler';
 import authRoutes from './routes/auth.routes';
-import userRoutes from './routes/user';
+import userRoutes from './routes/user.routes';
 import url from './utils/url';
 
 

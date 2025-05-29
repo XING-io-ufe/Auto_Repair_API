@@ -1,4 +1,3 @@
-// routes/user.ts
 import express from 'express';
 import { verifyToken } from '../middlewares/verifyToken';
 import { asyncHandler } from '../utils/asyncHandler';
