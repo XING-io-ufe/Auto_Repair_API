@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { PrismaClient, OTP_status_enum, OTP_type_enum, User_role_enum } from '../generated/prisma';
+import { PrismaClient, OTP_status_enum, OTP_type_enum, User_role_enum, Bonus_type_enum } from '../generated/prisma';
 import { sendOTP } from '../utils/smsSend';
 import generateOTP from '../utils/otpGenerator';
 import expiresTime from '../utils/expiresTime';
@@ -45,6 +45,13 @@ export const signUpPhone = async (req: Request, res: Response, next: NextFunctio
             OTP_user_ID: user.User_ID,
             OTP_create_at: expiresTime(0),
             OTP_expires_at: expiresTime(10),
+        },
+    });
+    await prisma.bonus.create({
+        data: {
+            Bonus_point: 0,
+            Bonus_type: Bonus_type_enum.REFERRAL,
+            Bonus_user_ID: user.User_ID,
         },
     });
 

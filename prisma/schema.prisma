@@ -5,208 +5,219 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
+    provider = "prisma-client-js"
+    output   = "../src/generated/prisma"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
 }
 
 // ─── ENUMS ────────────────────────────────────────────────────────────────
 
 enum User_role_enum {
-  ADMIN
-  MECHANIC
-  CUSTOMER
+    ADMIN
+    MECHANIC
+    CUSTOMER
 }
 
 enum Bonus_type_enum {
-  REFERRAL
-  LOYALTY
-  PROMO
+    REFERRAL
+    LOYALTY
+    PROMO
 }
 
 enum OTP_status_enum {
-  PENDING
-  USED
-  EXPIRED
+    PENDING
+    USED
+    EXPIRED
 }
 
 enum OTP_type_enum {
-  VERIFICATION
-  PASSWORD_RESET
-  REGISTER
+    VERIFICATION
+    PASSWORD_RESET
+    REGISTER
 }
 
 enum History_status_enum {
-  OPEN
-  COMPLETED
-  CANCELLED
+    OPEN
+    COMPLETED
+    CANCELLED
 }
 
 enum Register_car_status_enum {
-  ACTIVE
-  INACTIVE
-  STOLEN
+    ACTIVE
+    INACTIVE
+    STOLEN
 }
 
 enum Register_service_status_enum {
-  SCHEDULED
-  DONE
-  NO_SHOW
+    SCHEDULED
+    DONE
+    NO_SHOW
 }
 
 // ─── MODELS ───────────────────────────────────────────────────────────────
 
 model User {
-  User_ID         Int            @id @default(autoincrement()) @map("User_ID")
-  User_last_name  String         @map("User_last_name")
-  User_first_name String         @map("User_first_name")
-  User_email      String         @unique @map("User_email")
-  User_phone      String?        @map("User_phone")
-  User_password   String         @map("User_password")
-  User_role       User_role_enum @default(CUSTOMER) @map("User_role")
-  User_create_at  DateTime       @default(now()) @map("User_create_at")
-  User_update_at  DateTime       @updatedAt @map("User_update_at")
+    User_ID         Int            @id @default(autoincrement()) @map("User_ID")
+    User_last_name  String         @map("User_last_name")
+    User_first_name String         @map("User_first_name")
+    User_email      String         @unique @map("User_email")
+    User_phone      String?        @map("User_phone")
+    User_password   String         @map("User_password")
+    User_role       User_role_enum @default(CUSTOMER) @map("User_role")
+    User_create_at  DateTime       @default(now()) @map("User_create_at")
+    User_update_at  DateTime       @updatedAt @map("User_update_at")
 
-  Bonus            Bonus[]            @relation("UserBonuses")
-  Notification     Notification[]     @relation("UserNotifications")
-  Commit           Commit[]           @relation("UserCommits")
-  OTP              OTP[]              @relation("UserOTPs")
-  Register_car     Register_car[]     @relation("UserRegisterCars")
-  Register_service Register_service[] @relation("UserRegisterServices")
-  History          History[]          @relation("UserHistories")
+    Bonus            Bonus[]            @relation("UserBonuses")
+    Notification     Notification[]     @relation("UserNotifications")
+    Commit           Commit[]           @relation("UserCommits")
+    OTP              OTP[]              @relation("UserOTPs")
+    Register_car     Register_car[]     @relation("UserRegisterCars")
+    Register_service Register_service[] @relation("UserRegisterServices")
+    History          History[]          @relation("UserHistories")
+    Bonus_history    Bonus_history[]
 }
 
 model Car {
-  Car_ID   Int     @id @default(autoincrement()) @map("Car_ID")
-  Car_list String? @map("Car_list")
+    Car_ID   Int     @id @default(autoincrement()) @map("Car_ID")
+    Car_list String? @map("Car_list")
 
-  Register_service Register_service[] @relation("CarServices")
-  History          History[]
+    Register_service Register_service[] @relation("CarServices")
+    History          History[]
 }
 
 model Service {
-  Service_ID           Int     @id @default(autoincrement()) @map("Service_ID")
-  Service_name         String  @map("Service_name")
-  Service_description  String? @map("Service_description")
-  Service_price        Float   @map("Service_price")
-  Service_duration_min Int     @map("Service_duration_min")
+    Service_ID           Int     @id @default(autoincrement()) @map("Service_ID")
+    Service_name         String  @map("Service_name")
+    Service_description  String? @map("Service_description")
+    Service_price        Float   @map("Service_price")
+    Service_duration_min Int     @map("Service_duration_min")
 
-  Register_service Register_service[] @relation("ServiceBookings")
-  History          History[]          @relation("ServiceHistories")
+    Register_service Register_service[] @relation("ServiceBookings")
+    History          History[]          @relation("ServiceHistories")
 }
 
 model Bonus {
-  Bonus_ID      Int             @id @default(autoincrement()) @map("Bonus_ID")
-  Bonus_point   Int             @map("Bonus_point")
-  Bonus_type    Bonus_type_enum @map("Bonus_type")
-  Bonus_user_ID Int             @map("Bonus_user_ID")
-  User          User            @relation(fields: [Bonus_user_ID], references: [User_ID], name: "UserBonuses")
+    Bonus_ID      Int             @id @default(autoincrement()) @map("Bonus_ID")
+    Bonus_point   Int             @map("Bonus_point")
+    Bonus_type    Bonus_type_enum @map("Bonus_type")
+    Bonus_user_ID Int             @map("Bonus_user_ID")
+    User          User            @relation(fields: [Bonus_user_ID], references: [User_ID], name: "UserBonuses")
+}
+
+model Bonus_history {
+    Bonus_history_ID         Int             @id @default(autoincrement()) @map("Bonus_history_ID")
+    Bonus_history_user_ID    Int             @map("Bonus_history_user_ID")
+    Bonus_history_point      Int             @map("Bonus_history_point")
+    Bonus_history_type       Bonus_type_enum @map("Bonus_history_type")
+    Bonus_history_desc       String?         @map("Bonus_history_desc")
+    Bonus_history_created_at DateTime        @default(now()) @map("Bonus_history_created_at")
+    User                     User            @relation(fields: [Bonus_history_user_ID], references: [User_ID])
 }
 
 model Multi_branch {
-  Multi_branch_ID            Int      @id @default(autoincrement()) @map("Multi_branch_ID")
-  Multi_branch_name          String   @map("Multi_branch_name")
-  Multi_branch_address       String?  @map("Multi_branch_address")
-  Multi_branch_phone         String?  @map("Multi_branch_phone")
-  Multi_branch_email         String?  @map("Multi_branch_email")
-  Multi_branch_opening_hours String?  @map("Multi_branch_opening_hours")
-  Multi_branch_create_at     DateTime @default(now()) @map("Multi_branch_create_at")
-  Multi_branch_update_at     DateTime @updatedAt @map("Multi_branch_update_at")
+    Multi_branch_ID            Int      @id @default(autoincrement()) @map("Multi_branch_ID")
+    Multi_branch_name          String   @map("Multi_branch_name")
+    Multi_branch_address       String?  @map("Multi_branch_address")
+    Multi_branch_phone         String?  @map("Multi_branch_phone")
+    Multi_branch_email         String?  @map("Multi_branch_email")
+    Multi_branch_opening_hours String?  @map("Multi_branch_opening_hours")
+    Multi_branch_create_at     DateTime @default(now()) @map("Multi_branch_create_at")
+    Multi_branch_update_at     DateTime @updatedAt @map("Multi_branch_update_at")
 
-  Register_service Register_service[] @relation("BranchServices")
-  History          History[]          @relation("BranchHistories")
+    Register_service Register_service[] @relation("BranchServices")
+    History          History[]          @relation("BranchHistories")
 }
 
 model Commit {
-  Commit_ID          Int      @id @default(autoincrement()) @map("Commit_ID")
-  Commit_text        String   @map("Commit_text")
-  Commit_review      String?  @map("Commit_review")
-  Commit_entity_id   Int?     @map("Commit_entity_id")
-  Commit_entity_name String?  @map("Commit_entity_name")
-  Commit_create_at   DateTime @default(now()) @map("Commit_create_at")
-  Commit_user_ID     Int      @map("Commit_user_ID")
-  User               User     @relation(fields: [Commit_user_ID], references: [User_ID], name: "UserCommits")
+    Commit_ID          Int      @id @default(autoincrement()) @map("Commit_ID")
+    Commit_text        String   @map("Commit_text")
+    Commit_review      String?  @map("Commit_review")
+    Commit_entity_id   Int?     @map("Commit_entity_id")
+    Commit_entity_name String?  @map("Commit_entity_name")
+    Commit_create_at   DateTime @default(now()) @map("Commit_create_at")
+    Commit_user_ID     Int      @map("Commit_user_ID")
+    User               User     @relation(fields: [Commit_user_ID], references: [User_ID], name: "UserCommits")
 }
 
 model Notification {
-  Notification_ID        Int      @id @default(autoincrement()) @map("Notification_ID")
-  Notification_text      String   @map("Notification_text")
-  Notification_is_read   Boolean  @default(false) @map("Notification_is_read")
-  Notification_create_at DateTime @default(now()) @map("Notification_create_at")
-  Notification_user_ID   Int      @map("Notification_user_ID")
-  User                   User     @relation(fields: [Notification_user_ID], references: [User_ID], name: "UserNotifications")
+    Notification_ID        Int      @id @default(autoincrement()) @map("Notification_ID")
+    Notification_text      String   @map("Notification_text")
+    Notification_is_read   Boolean  @default(false) @map("Notification_is_read")
+    Notification_create_at DateTime @default(now()) @map("Notification_create_at")
+    Notification_user_ID   Int      @map("Notification_user_ID")
+    User                   User     @relation(fields: [Notification_user_ID], references: [User_ID], name: "UserNotifications")
 }
 
 model OTP {
-  OTP_ID         Int             @id @default(autoincrement()) @map("OTP_ID")
-  OTP_code       String          @map("OTP_code")
-  OTP_type       OTP_type_enum   @map("OTP_type")
-  OTP_status     OTP_status_enum @map("OTP_status")
-  OTP_create_at  DateTime        @default(now()) @map("OTP_create_at")
-  OTP_expires_at DateTime        @map("OTP_expires_at")
-  OTP_user_ID    Int             @map("OTP_user_ID")
-  User           User            @relation(fields: [OTP_user_ID], references: [User_ID], name: "UserOTPs")
+    OTP_ID         Int             @id @default(autoincrement()) @map("OTP_ID")
+    OTP_code       String          @map("OTP_code")
+    OTP_type       OTP_type_enum   @map("OTP_type")
+    OTP_status     OTP_status_enum @map("OTP_status")
+    OTP_create_at  DateTime        @default(now()) @map("OTP_create_at")
+    OTP_expires_at DateTime        @map("OTP_expires_at")
+    OTP_user_ID    Int             @map("OTP_user_ID")
+    User           User            @relation(fields: [OTP_user_ID], references: [User_ID], name: "UserOTPs")
 }
 
 model History {
-  History_ID        Int                 @id @default(autoincrement()) @map("History_ID")
-  History_bonus     Int?                @map("History_bonus")
-  History_price     Float?              @map("History_price")
-  History_status    History_status_enum @map("History_status")
-  History_create_at DateTime            @default(now()) @map("History_create_at")
+    History_ID        Int                 @id @default(autoincrement()) @map("History_ID")
+    History_bonus     Int?                @map("History_bonus")
+    History_price     Float?              @map("History_price")
+    History_status    History_status_enum @map("History_status")
+    History_create_at DateTime            @default(now()) @map("History_create_at")
 
-  History_multi_branch_ID Int          @map("History_multi_branch_ID")
-  Multi_branch            Multi_branch @relation(fields: [History_multi_branch_ID], references: [Multi_branch_ID], name: "BranchHistories")
+    History_multi_branch_ID Int          @map("History_multi_branch_ID")
+    Multi_branch            Multi_branch @relation(fields: [History_multi_branch_ID], references: [Multi_branch_ID], name: "BranchHistories")
 
-  History_user_ID Int  @map("History_user_ID")
-  User            User @relation(fields: [History_user_ID], references: [User_ID], name: "UserHistories")
+    History_user_ID Int  @map("History_user_ID")
+    User            User @relation(fields: [History_user_ID], references: [User_ID], name: "UserHistories")
 
-  History_service_ID Int     @map("History_service_ID")
-  Service            Service @relation(fields: [History_service_ID], references: [Service_ID], name: "ServiceHistories")
+    History_service_ID Int     @map("History_service_ID")
+    Service            Service @relation(fields: [History_service_ID], references: [Service_ID], name: "ServiceHistories")
 
-  History_register_car Int?          @map("History_register_car")
-  Register_car         Register_car? @relation(fields: [History_register_car], references: [Register_car_ID], name: "CarHistories")
+    History_register_car Int?          @map("History_register_car")
+    Register_car         Register_car? @relation(fields: [History_register_car], references: [Register_car_ID], name: "CarHistories")
 
-  History_register_service_ID Int?              @map("History_register_service_ID")
-  Register_service            Register_service? @relation(fields: [History_register_service_ID], references: [Register_service_ID], name: "ServiceBookings")
-  Car                         Car?              @relation(fields: [carCar_ID], references: [Car_ID])
-  carCar_ID                   Int?
+    History_register_service_ID Int?              @map("History_register_service_ID")
+    Register_service            Register_service? @relation(fields: [History_register_service_ID], references: [Register_service_ID], name: "ServiceBookings")
+    Car                         Car?              @relation(fields: [carCar_ID], references: [Car_ID])
+    carCar_ID                   Int?
 }
 
 model Register_car {
-  Register_car_ID           Int                      @id @default(autoincrement()) @map("Register_car_ID")
-  Register_car_manufacturer String?                  @map("Register_car_manufacturer")
-  Register_car_mark         String?                  @map("Register_car_mark")
-  Register_car_year         Int?                     @map("Register_car_year")
-  Register_car_vin          String?                  @unique @map("Register_car_vin")
-  Register_car_status       Register_car_status_enum @map("Register_car_status")
-  Register_car_create_at    DateTime                 @default(now()) @map("Register_car_create_at")
-  Register_car_update_at    DateTime                 @updatedAt @map("Register_car_update_at")
-  Register_car_user_ID      Int                      @map("Register_car_user_ID")
-  User                      User                     @relation(fields: [Register_car_user_ID], references: [User_ID], name: "UserRegisterCars")
+    Register_car_ID           Int                      @id @default(autoincrement()) @map("Register_car_ID")
+    Register_car_manufacturer String?                  @map("Register_car_manufacturer")
+    Register_car_mark         String?                  @map("Register_car_mark")
+    Register_car_year         Int?                     @map("Register_car_year")
+    Register_car_vin          String?                  @unique @map("Register_car_vin")
+    Register_car_status       Register_car_status_enum @map("Register_car_status")
+    Register_car_create_at    DateTime                 @default(now()) @map("Register_car_create_at")
+    Register_car_update_at    DateTime                 @updatedAt @map("Register_car_update_at")
+    Register_car_user_ID      Int                      @map("Register_car_user_ID")
+    User                      User                     @relation(fields: [Register_car_user_ID], references: [User_ID], name: "UserRegisterCars")
 
-  History History[] @relation("CarHistories")
+    History History[] @relation("CarHistories")
 }
 
 model Register_service {
-  Register_service_ID              Int                          @id @default(autoincrement()) @map("Register_service_ID")
-  Register_service_scheduled       DateTime?                    @map("Register_service_scheduled")
-  Register_service_time_list       String?                      @map("Register_service_time_list")
-  Register_service_status          Register_service_status_enum @map("Register_service_status")
-  Register_service_create_at       DateTime                     @default(now()) @map("Register_service_create_at")
-  Register_service_update_at       DateTime                     @updatedAt @map("Register_service_update_at")
-  Register_service_user_ID         Int                          @map("Register_service_user_ID")
-  User                             User                         @relation(fields: [Register_service_user_ID], references: [User_ID], name: "UserRegisterServices")
-  Register_service_car             Int                          @map("Register_service_car")
-  Car                              Car                          @relation(fields: [Register_service_car], references: [Car_ID], name: "CarServices")
-  Register_service_service_ID      Int                          @map("Register_service_service_ID")
-  Service                          Service                      @relation(fields: [Register_service_service_ID], references: [Service_ID], name: "ServiceBookings")
-  Register_service_multi_branch_ID Int                          @map("Register_service_multi_branch_ID")
-  Multi_branch                     Multi_branch                 @relation(fields: [Register_service_multi_branch_ID], references: [Multi_branch_ID], name: "BranchServices")
+    Register_service_ID              Int                          @id @default(autoincrement()) @map("Register_service_ID")
+    Register_service_scheduled       DateTime?                    @map("Register_service_scheduled")
+    Register_service_time_list       String?                      @map("Register_service_time_list")
+    Register_service_status          Register_service_status_enum @map("Register_service_status")
+    Register_service_create_at       DateTime                     @default(now()) @map("Register_service_create_at")
+    Register_service_update_at       DateTime                     @updatedAt @map("Register_service_update_at")
+    Register_service_user_ID         Int                          @map("Register_service_user_ID")
+    User                             User                         @relation(fields: [Register_service_user_ID], references: [User_ID], name: "UserRegisterServices")
+    Register_service_car             Int                          @map("Register_service_car")
+    Car                              Car                          @relation(fields: [Register_service_car], references: [Car_ID], name: "CarServices")
+    Register_service_service_ID      Int                          @map("Register_service_service_ID")
+    Service                          Service                      @relation(fields: [Register_service_service_ID], references: [Service_ID], name: "ServiceBookings")
+    Register_service_multi_branch_ID Int                          @map("Register_service_multi_branch_ID")
+    Multi_branch                     Multi_branch                 @relation(fields: [Register_service_multi_branch_ID], references: [Multi_branch_ID], name: "BranchServices")
 
-  History History[] @relation("ServiceBookings")
+    History History[] @relation("ServiceBookings")
 }

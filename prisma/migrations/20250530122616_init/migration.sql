@@ -64,6 +64,18 @@ CREATE TABLE "Bonus" (
 );
 
 -- CreateTable
+CREATE TABLE "Bonus_history" (
+    "Bonus_history_ID" SERIAL NOT NULL,
+    "Bonus_history_user_ID" INTEGER NOT NULL,
+    "Bonus_history_point" INTEGER NOT NULL,
+    "Bonus_history_type" "Bonus_type_enum" NOT NULL,
+    "Bonus_history_desc" TEXT,
+    "Bonus_history_created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Bonus_history_pkey" PRIMARY KEY ("Bonus_history_ID")
+);
+
+-- CreateTable
 CREATE TABLE "Multi_branch" (
     "Multi_branch_ID" SERIAL NOT NULL,
     "Multi_branch_name" TEXT NOT NULL,
@@ -170,6 +182,9 @@ CREATE UNIQUE INDEX "Register_car_Register_car_vin_key" ON "Register_car"("Regis
 
 -- AddForeignKey
 ALTER TABLE "Bonus" ADD CONSTRAINT "Bonus_Bonus_user_ID_fkey" FOREIGN KEY ("Bonus_user_ID") REFERENCES "User"("User_ID") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Bonus_history" ADD CONSTRAINT "Bonus_history_Bonus_history_user_ID_fkey" FOREIGN KEY ("Bonus_history_user_ID") REFERENCES "User"("User_ID") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Commit" ADD CONSTRAINT "Commit_Commit_user_ID_fkey" FOREIGN KEY ("Commit_user_ID") REFERENCES "User"("User_ID") ON DELETE RESTRICT ON UPDATE CASCADE;

@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import styles from "./verifySignIn.module.css";
 import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
@@ -16,10 +16,17 @@ export default function VerifySignInPage() {
   const searchParams = useSearchParams();
   const phone = searchParams.get("phone");
 
-  function showToast(msg, type = "error") {
+  function showToast(msg, type) {
     setToast({ msg, type });
-    setTimeout(() => setToast(null), 2400);
   }
+
+  useEffect(() => {
+    if (toast) {
+      const t = setTimeout(() => setToast(null), 2500);
+      return () => clearTimeout(t);
+    }
+  }, [toast]);
+
   const handleInput = (e, idx) => {
     const val = e.target.value.replace(/\D/g, "");
     if (!val) return;
@@ -63,16 +70,15 @@ export default function VerifySignInPage() {
             otp: code.join(""),
           }
         );
-        showToast(response.data.message, "success");
         localStorage.setItem("token", response.data.token);
-        console.log("token", response.data.token)
+        showToast(response.data.message, "success");
         router.push("/dashboard");
       } catch (err) {
         showToast(err.response.data.message, "error");
       } finally {
         setSubmitting(false);
       }
-    }, 1200);
+    }, 2000);
   };
 
   return (

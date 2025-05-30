@@ -2,6 +2,10 @@
 import { useState, useEffect } from "react";
 import styles from "@/styles/dashboard.module.css";
 import { useRouter } from "next/navigation";
+
+import axios from "axios";
+import { api_url } from '../settings/apiUrl';
+
 export default function Dashboard({
   bonusRoute,
   toHome,
@@ -11,18 +15,29 @@ export default function Dashboard({
 }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const router = useRouter();
-  const bonus = 0;
+  const [bonus, setBonus] = useState("");
   const myCars = [];
 
   function navigateTo(path) {
     router.push(path);
   }
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      router.push('/login');
+    const fetchBonus = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(`${api_url}/user/bonus`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const bonusPoint = response.data.data?.[0]?.Bonus_point || 0;
+        setBonus(bonusPoint);
+      } catch (err) {
+        next(err);
+      }
     }
-  }, [router]);
+    fetchBonus();
+  }, []);
 
   const logout = () => {
     localStorage.removeItem('token');

@@ -58,7 +58,7 @@ export const verifyOTP = async (
         return res.status(200).json({ message: successMessage });
     }
 
-    // VERIFIED → JWT үүсгэж буцаах
+    // VERIFIED > JWT үүсгэж буцаах
     if (otpCheck.OTP_type === OTP_type_enum.VERIFICATION) {
         const token = jwt.sign(
             {

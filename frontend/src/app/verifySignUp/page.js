@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
 
@@ -17,10 +17,16 @@ export default function VerifySignUpPage() {
   const searchParams = useSearchParams();
   const phone = searchParams.get("phone");
 
-  function showToast(msg, type = "error") {
+  function showToast(msg, type) {
     setToast({ msg, type });
-    setTimeout(() => setToast(null), 2400);
   }
+
+  useEffect(() => {
+    if (toast) {
+      const t = setTimeout(() => setToast(null), 2500);
+      return () => clearTimeout(t);
+    }
+  }, [toast]);
 
   const handleInput = (e, idx) => {
     const val = e.target.value.replace(/\D/g, "");
@@ -71,11 +77,11 @@ export default function VerifySignUpPage() {
         showToast(response.data.message, "success");
         router.push("/login");
       } catch (err) {
-        showToast(response.data.message, "error");
+        showToast(err.response.data.message, "error");
       } finally {
         setSubmitting(false);
       }
-    }, 1200);
+    }, 2000);
   };
 
   return (

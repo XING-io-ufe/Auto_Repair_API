@@ -7,6 +7,7 @@ import bodyParser from 'body-parser';
 import { errorHandler } from './middlewares/errorHandler';
 import authRoutes from './routes/auth.routes';
 import userRoutes from './routes/user.routes';
+import userBonus from './routes/bonus.routes';
 import url from './utils/url';
 
 
@@ -25,6 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // ROUTES
 app.use(`${url.ADDRESS}/auth`, authRoutes);
 app.use(`${url.ADDRESS}/user`, userRoutes);
+app.use(`${url.ADDRESS}/user`, userBonus);
 
 // SERVER STATUS CHECK
 app.get(`${url.ADDRESS}`, (req, res) => {

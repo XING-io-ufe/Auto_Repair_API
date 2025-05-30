@@ -7,20 +7,19 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction) => 
     const authHeader = req.headers.authorization;
 
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        return res.status(401).json({ message: 'Токен байхгүй байна!' });
+        return res.status(401).json({ message: 'Та нэвтрээгүй байна!' });
     }
 
     const token = authHeader.split(' ')[1];
 
     try {
         const decoded = jwt.verify(token, JWT_SECRET);
-        // decoded → { id, phone, role, iat, exp }
         (req as any).user = decoded;
         next();
     } catch (err) {
         if (err instanceof TokenExpiredError) {
-            return res.status(401).json({ message: 'Токен хугацаа нь дууссан байна!' });
+            return res.status(401).json({ message: 'Та системээс гарсан байна. Дахин нэвтэрнэ үү!' });
         }
-        return res.status(403).json({ message: 'Хүчингүй токен байна!' });
+        return res.status(403).json({ message: 'Та дахин нэвтэрнэ үү?' });
     }
 };
