@@ -1,5 +1,6 @@
 import "./globals.css";
 import LayoutShell from "./LayoutShell";
+import { UserProvider } from "../context/UserContext";
 
 export const metadata = {
   title: "GoService | Car Service",
@@ -10,7 +11,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="mn">
       <body>
-        <LayoutShell>{children}</LayoutShell>
+        <UserProvider >
+          <LayoutShell>{children}</LayoutShell>
+        </UserProvider>
       </body>
     </html>
   );

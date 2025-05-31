@@ -3,7 +3,7 @@ import { PrismaClient, Bonus_type_enum } from '../generated/prisma';
 
 const prisma = new PrismaClient();
 
-export const bonus = async (req: Request, res: Response, next: NextFunction) => {
+export const getUserBonus = async (req: Request, res: Response, next: NextFunction) => {
     const userId = (req as any).user?.id;
     if (!userId) {
         return res.status(400).json({ message: 'Хэрэглэгч олдсонгүй!' });
@@ -17,6 +17,6 @@ export const bonus = async (req: Request, res: Response, next: NextFunction) => 
         });
         return res.status(200).json({ data: userBonus });
     } catch (error) {
-        return res.status(500).json({ message: 'Error' });
+        return res.status(500).json({ message: 'Бонус оноо олдсонгүй!' });
     }
 };

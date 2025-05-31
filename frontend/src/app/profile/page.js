@@ -2,6 +2,9 @@
 import { useState, useEffect } from "react";
 import styles from "./profile.module.css";
 import { useRouter } from "next/navigation";
+
+import { userUpdate } from "@/api/auth";
+
 export default function ProfilePage() {
   const [lastName, setLastName] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -13,7 +16,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     if (toast) {
-      const timer = setTimeout(() => setToast(null), 2500);
+      const timer = setTimeout(() => setToast(null), 2000);
       return () => clearTimeout(timer);
     }
   }, [toast]);
@@ -22,7 +25,7 @@ export default function ProfilePage() {
     setToast({ msg, type });
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!lastName || !firstName || !phone || !email) {
       showToast("Бүх талбарыг бөглөнө үү!", "error");
@@ -36,8 +39,13 @@ export default function ProfilePage() {
       showToast("Зөв цахим хаяг оруулна уу!", "error");
       return;
     }
-
-    showToast("Амжилттай хадгаллаа!", "success");
+    try {
+      const token = localStorage.getItem("token");
+      const Update = await userUpdate({ token, lastName, firstName, phone, email });
+      showToast(Update.message, "success");
+    } catch (err) {
+      console.error("Бонус оноо олдсонгүй!", err);
+    }
   };
 
   return (
@@ -45,13 +53,12 @@ export default function ProfilePage() {
       <div className={styles.container}>
         {toast && (
           <div
-            className={`${styles.toast} ${
-              toast.type === "error"
-                ? styles.toastError
-                : toast.type === "success"
+            className={`${styles.toast} ${toast.type === "error"
+              ? styles.toastError
+              : toast.type === "success"
                 ? styles.toastSuccess
                 : styles.toastInfo
-            }`}
+              }`}
             onClick={() => setToast(null)}
           >
             {toast.msg}

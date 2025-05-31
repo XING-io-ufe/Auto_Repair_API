@@ -2,9 +2,8 @@
 import { useRef, useState, useEffect } from "react";
 import styles from "./verifySignIn.module.css";
 import { useRouter, useSearchParams } from "next/navigation";
-import axios from "axios";
+import { verifySignInOTP } from "@/api/auth";
 
-import { api_url } from '../../settings/apiUrl';
 
 export default function VerifySignInPage() {
   const CODE_LENGTH = 6;
@@ -22,7 +21,7 @@ export default function VerifySignInPage() {
 
   useEffect(() => {
     if (toast) {
-      const t = setTimeout(() => setToast(null), 2500);
+      const t = setTimeout(() => setToast(null), 2000);
       return () => clearTimeout(t);
     }
   }, [toast]);
@@ -61,24 +60,19 @@ export default function VerifySignInPage() {
     e.preventDefault();
     if (code.join("").length !== CODE_LENGTH) return;
     setSubmitting(true);
-    setTimeout(async () => {
-      try {
-        const response = await axios.post(
-          `${api_url}/auth/signin/verify`,
-          {
-            phone,
-            otp: code.join(""),
-          }
-        );
-        localStorage.setItem("token", response.data.token);
-        showToast(response.data.message, "success");
+    try {
+      const response = await verifySignInOTP({ phone, otp: code.join("") });
+
+      localStorage.setItem("token", response.token);
+      showToast(response.message, "success");
+      setTimeout(() => {
         router.push("/dashboard");
-      } catch (err) {
-        showToast(err.response.data.message, "error");
-      } finally {
-        setSubmitting(false);
-      }
-    }, 2000);
+      }, 1500);
+    } catch (err) {
+      showToast(err?.response?.data?.message, "error" || "үл мэдэгдэх алдаа!", "error");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (

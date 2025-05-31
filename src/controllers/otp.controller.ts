@@ -13,7 +13,7 @@ export const verifySignInOTP = async (req: Request, res: Response, next: NextFun
     return verifyOTP(phone, otp, OTP_type_enum.VERIFICATION, "Амжилттай нэвтэрлээ.", res);
 };
 
-export const verifySignUpOTP = async (req: Request, res: Response) => {
+export const verifySignUpOTP = async (req: Request, res: Response, next: NextFunction) => {
     const { phone, otp } = req.body;
     if (!phone) {
         return res.status(400).json({ message: "Утасны дугаараа оруулна уу!" });

@@ -1,10 +1,10 @@
 "use client";
 import { useRef, useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import axios from "axios";
+
 
 import styles from "@/app/verifySignIn/verifySignIn.module.css";
-import { api_url } from '../../settings/apiUrl';
+import { verifySignUpOTP } from "@/api/auth";
 
 
 export default function VerifySignUpPage() {
@@ -23,7 +23,7 @@ export default function VerifySignUpPage() {
 
   useEffect(() => {
     if (toast) {
-      const t = setTimeout(() => setToast(null), 2500);
+      const t = setTimeout(() => setToast(null), 2000);
       return () => clearTimeout(t);
     }
   }, [toast]);
@@ -65,23 +65,17 @@ export default function VerifySignUpPage() {
       return;
     }
     setSubmitting(true);
-    setTimeout(async () => {
-      try {
-        const response = await axios.post(
-          `${api_url}/auth/signup/verify`,
-          {
-            phone,
-            otp: code.join(""),
-          }
-        );
-        showToast(response.data.message, "success");
+    try {
+      const response = await verifySignUpOTP({ phone, otp: code.join("") });
+      showToast(response.message, "success");
+      setTimeout(() => {
         router.push("/login");
-      } catch (err) {
-        showToast(err.response.data.message, "error");
-      } finally {
-        setSubmitting(false);
-      }
-    }, 2000);
+      }, 1500);
+    } catch (err) {
+      showToast(err?.response?.data?.message, "error" || "үл мэдэгдэх алдаа!", "error");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (

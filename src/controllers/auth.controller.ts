@@ -89,3 +89,38 @@ export const signInPhone = async (req: Request, res: Response, next: NextFunctio
     await sendOTP(fullPhone, otpCode);
     return res.status(200).json({ message: "OTP амжилттай илгээгдсэн." });
 };
+
+export const userUpdate = async (req: Request, res: Response, next: NextFunction) => {
+    const userId = (req as any).user?.id;
+    if (!userId) {
+        return res.status(400).json({ message: 'Хэрэглэгч олдсонгүй!' });
+    }
+    const { lastName, firstName, phone, email } = req.body;
+
+    const fullPhone = `976${phone}`;
+
+    try {
+
+        const updatedUser = await prisma.user.update({
+            where: { User_ID: userId },
+            data: {
+                User_last_name: lastName,
+                User_first_name: firstName,
+                User_phone: fullPhone,
+                User_email: email,
+                User_update_at: expiresTime(0),
+            },
+            select: {
+                User_ID: true,
+                User_last_name: true,
+                User_first_name: true,
+                User_phone: true,
+                User_email: true,
+                User_role: true,
+            },
+        });
+        return res.status(200).json({ message: "Мэдээлэл амжилттай шинэчлэгдлээ", updatedUser });
+    } catch (error) {
+        return res.status(500).json({ message: 'Амжилгүй хүсэлт!' });
+    }
+};

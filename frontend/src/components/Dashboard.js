@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 import styles from "@/styles/dashboard.module.css";
 import { useRouter } from "next/navigation";
 
-import axios from "axios";
-import { api_url } from '../settings/apiUrl';
+import { getUserBonus } from "@/api/bonus";
+import { logout } from "@/utils/logout";
+import { useUser } from "../context/UserContext";
 
 export default function Dashboard({
   bonusRoute,
@@ -17,6 +18,9 @@ export default function Dashboard({
   const router = useRouter();
   const [bonus, setBonus] = useState("");
   const myCars = [];
+  const { user } = useUser();
+
+
 
   function navigateTo(path) {
     router.push(path);
@@ -25,24 +29,15 @@ export default function Dashboard({
     const fetchBonus = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get(`${api_url}/user/bonus`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const bonusPoint = response.data.data?.[0]?.Bonus_point || 0;
+        const bonusPoint = await getUserBonus(token);
         setBonus(bonusPoint);
       } catch (err) {
-        next(err);
+        console.error("Бонус оноо олдсонгүй!", error);
       }
     }
     fetchBonus();
   }, []);
 
-  const logout = () => {
-    localStorage.removeItem('token');
-    router.push('/login');
-  };
 
 
   return (
@@ -57,7 +52,7 @@ export default function Dashboard({
               👤
             </span>
           </button>
-          <span className={styles.userName}>B.Byambanasan</span>
+          <span className={styles.userName}>{user?.name || "Нэвтрээгүй"}</span>
           <button className={styles.iconBtn}>
             <span role="img" aria-label="bell">
               🔔

@@ -17,7 +17,7 @@ export const verifyOTP = async (
     type: OTP_type_enum,
     successMessage: string,
     res: Response
-) => {
+): Promise<Response> => {
     const fullPhone = `976${phone}`;
 
     const user = await prisma.user.findFirst({ where: { User_phone: fullPhone } });
@@ -53,17 +53,13 @@ export const verifyOTP = async (
         data: { OTP_status: OTP_status_enum.USED },
     });
 
-
-    if (otpCheck.OTP_type === OTP_type_enum.REGISTER) {
-        return res.status(200).json({ message: successMessage });
-    }
-
     // VERIFIED > JWT үүсгэж буцаах
     if (otpCheck.OTP_type === OTP_type_enum.VERIFICATION) {
         const token = jwt.sign(
             {
                 id: user.User_ID,
                 phone: user.User_phone,
+                name: user.User_first_name,
                 role: user.User_role,
             },
             JWT_SECRET,
@@ -76,10 +72,11 @@ export const verifyOTP = async (
             user: {
                 id: user.User_ID,
                 phone: user.User_phone,
+                name: user.User_first_name,
                 role: user.User_role,
             },
         });
     }
 
-    return res.status(403).json({ message: successMessage });
+    return res.status(200).json({ message: successMessage });
 };

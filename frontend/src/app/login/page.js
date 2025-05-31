@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import styles from "./login.module.css";
 import { validatePhone } from "../../utils/phoneValidation";
 import { api_url } from '../../settings/apiUrl';
-import axios from 'axios';
+import { signUpPhone, signInPhone } from "@/api/auth";
 
 
 export default function LoginPage() {
@@ -18,7 +18,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (toast) {
-      const t = setTimeout(() => setToast(null), 2500);
+      const t = setTimeout(() => setToast(null), 2000);
       return () => clearTimeout(t);
     }
   }, [toast]);
@@ -33,13 +33,13 @@ export default function LoginPage() {
     }
 
     try {
-      const response = await axios.post(`${api_url}/auth/signin`, { phone });
-      showToast(response.data.message, "success");
+      const response = await signInPhone({ phone });
+      showToast(response.message, "success");
       setTimeout(() => {
         router.push(`/verifySignIn?phone=${encodeURIComponent(phone)}`);
-      }, 1200);
+      }, 1500);
     } catch (err) {
-      showToast(err.response.data.message, "error");
+      showToast(err?.response?.data?.message, "error" || "үл мэдэгдэх алдаа!", "error");
     }
   };
 
@@ -51,13 +51,13 @@ export default function LoginPage() {
     }
 
     try {
-      const response = await axios.post(`${api_url}/auth/signup`, { phone });
-      showToast(response.data.message, "success");
+      const response = await signUpPhone({ phone });
+      showToast(response.message, "success");
       setTimeout(() => {
         router.push(`/verifySignUp?phone=${encodeURIComponent(phone)}`);
-      }, 1200);
+      }, 1500);
     } catch (err) {
-      showToast(err.response.data.message, "error");
+      showToast(err?.response?.data?.message, "error" || "үл мэдэгдэх алдаа!", "error");
     }
   };
 
