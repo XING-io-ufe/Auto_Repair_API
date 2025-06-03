@@ -1,0 +1,72 @@
+[
+    {
+        "Multi_branch_name": "Downtown Branch",
+        "Multi_branch_address": "123 Main St, Downtown",
+        "Multi_branch_phone": "123-456-7890",
+        "Multi_branch_email": "downtown@example.com",
+        "Multi_branch_opening_hours": "9 AM - 5 PM"
+    },
+    {
+        "Multi_branch_name": "Uptown Branch",
+        "Multi_branch_address": "456 North Ave, Uptown",
+        "Multi_branch_phone": "987-654-3210",
+        "Multi_branch_email": "uptown@example.com",
+        "Multi_branch_opening_hours": "10 AM - 6 PM"
+    },
+    {
+        "Multi_branch_name": "Midtown Branch",
+        "Multi_branch_address": "789 Central Blvd, Midtown",
+        "Multi_branch_phone": "555-123-4567",
+        "Multi_branch_email": "midtown@example.com",
+        "Multi_branch_opening_hours": "8 AM - 4 PM"
+    },
+    {
+        "Multi_branch_name": "Eastside Branch",
+        "Multi_branch_address": "321 East Rd, Eastside",
+        "Multi_branch_phone": "111-222-3333",
+        "Multi_branch_email": "eastside@example.com",
+        "Multi_branch_opening_hours": "9 AM - 5 PM"
+    },
+    {
+        "Multi_branch_name": "Westend Branch",
+        "Multi_branch_address": "654 West St, Westend",
+        "Multi_branch_phone": "222-333-4444",
+        "Multi_branch_email": "westend@example.com",
+        "Multi_branch_opening_hours": "10 AM - 7 PM"
+    },
+    {
+        "Multi_branch_name": "Southpark Branch",
+        "Multi_branch_address": "159 South Ave, Southpark",
+        "Multi_branch_phone": "333-444-5555",
+        "Multi_branch_email": "southpark@example.com",
+        "Multi_branch_opening_hours": "8 AM - 6 PM"
+    },
+    {
+        "Multi_branch_name": "Northhill Branch",
+        "Multi_branch_address": "753 North Hill, Northhill",
+        "Multi_branch_phone": "444-555-6666",
+        "Multi_branch_email": "northhill@example.com",
+        "Multi_branch_opening_hours": "9 AM - 6 PM"
+    },
+    {
+        "Multi_branch_name": "Greenfield Branch",
+        "Multi_branch_address": "951 Greenfield Dr, Greenfield",
+        "Multi_branch_phone": "555-666-7777",
+        "Multi_branch_email": "greenfield@example.com",
+        "Multi_branch_opening_hours": "7 AM - 3 PM"
+    },
+    {
+        "Multi_branch_name": "Riverdale Branch",
+        "Multi_branch_address": "852 River Ln, Riverdale",
+        "Multi_branch_phone": "666-777-8888",
+        "Multi_branch_email": "riverdale@example.com",
+        "Multi_branch_opening_hours": "11 AM - 7 PM"
+    },
+    {
+        "Multi_branch_name": "Hilltop Branch",
+        "Multi_branch_address": "159 Hilltop Way, Hilltop",
+        "Multi_branch_phone": "777-888-9999",
+        "Multi_branch_email": "hilltop@example.com",
+        "Multi_branch_opening_hours": "6 AM - 2 PM"
+    }
+]

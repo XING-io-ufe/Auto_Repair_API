@@ -1,0 +1,200 @@
+.wrapper {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 24px rgba(30, 120, 30, 0.06);
+  /* margin: 40px auto; */
+  /* max-width: 900px; */
+  width: 100%;
+  padding: 32px 22px 32px 22px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.logo {
+  width: 120px;
+  height: 120px;
+  /* margin-right: 8px; */
+  flex-shrink: 0;
+}
+.headerTitle {
+  font-size: 1.13rem;
+  font-weight: 600;
+  flex: 1;
+  text-align: center;
+  margin-left: 10px;
+}
+.arrowGroup {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  /* margin-right: 10px; */
+  flex-shrink: 0;
+}
+.pageNum {
+  display: inline-block;
+  min-width: 28px;
+  text-align: center;
+  font-size: 1.22rem;
+  font-weight: 600;
+  margin-left: 6px;
+}
+.iconBtn {
+  background: none;
+  border: none;
+  padding: 6px 8px;
+  border-radius: 6px;
+  color: #1bb36d;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: background 0.13s;
+}
+.iconBtn:active,
+.iconBtn:hover {
+  background: #e5ffe5;
+}
+.plusBtn {
+  background: #1bb36d;
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  color: #fff;
+  margin-left: 6px;
+  font-size: 1.6rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px rgba(40, 180, 99, 0.09);
+  transition: background 0.14s;
+}
+.plusBtn:hover {
+  background: #0c8d5d;
+}
+
+.tableContainer {
+  overflow-x: auto;
+  margin-top: 16px;
+}
+.serviceTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fff;
+  /* border-radius: 10px; */
+  overflow: hidden;
+  box-shadow: 0 0 0 1.5px #e0e0e0;
+  /* border-bottom: 1px solid #454545; */
+}
+
+.serviceTable th {
+  border-bottom: 1px solid #e0e0e0; /* Бүдэг cell border */
+  border-top: 1px solid #e0e0e0;
+  border-right: none;
+  border-left: none;
+  padding: 16px 12px;
+  text-align: left;
+  font-size: 1.03rem;
+}
+.serviceTable td {
+  border-bottom: 1px solid #e0e0e0; /* Бүдэг cell border */
+  border-right: none;
+  border-left: none;
+  padding: 16px 12px;
+  text-align: left;
+  font-size: 1.03rem;
+}
+.serviceTable th {
+  background: #fafafa;
+  font-weight: 600;
+}
+.serviceTable tr:last-child td {
+  border-bottom: none;
+}
+
+.editRow td {
+  background: #f7fdf7;
+  padding: 0;
+}
+
+.tableInput {
+  width: 100%;
+  padding: 15px 10px;
+  font-size: 1.06rem;
+  border-radius: 0;
+  border: none;
+  background: #f7fdf7;
+  outline: none;
+  box-sizing: border-box;
+}
+.tableInput:focus {
+  background: #eefaf3;
+  border-bottom: 1.5px solid #1bb36d;
+}
+
+.addActions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px 8px;
+  min-width: 175px;
+  background: #f7fdf7;
+}
+
+.saveBtn {
+  background: #1bb36d;
+  color: #fff;
+  border: none;
+  padding: 11px 25px;
+  border-radius: 7px;
+  font-weight: 600;
+  font-size: 1.02rem;
+  cursor: pointer;
+  margin-right: 2px;
+  transition: background 0.14s;
+}
+.saveBtn:hover {
+  background: #0c8d5d;
+}
+
+.cancelBtn {
+  background: #bbb;
+  color: #fff;
+  border: none;
+  padding: 11px 17px;
+  border-radius: 7px;
+  font-weight: 500;
+  font-size: 1.02rem;
+  cursor: pointer;
+  margin-left: 2px;
+  transition: background 0.14s;
+}
+.cancelBtn:hover {
+  background: #888;
+}
+
+@media (max-width: 700px) {
+  .wrapper {
+    padding: 8px 2vw;
+  }
+  .serviceTable th,
+  .serviceTable td {
+    padding: 10px 4px;
+    font-size: 0.98rem;
+  }
+  .plusBtn {
+    width: 34px;
+    height: 34px;
+  }
+  .addActions {
+    flex-direction: column;
+    gap: 9px;
+    min-width: 80px;
+  }
+}

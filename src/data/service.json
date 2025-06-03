@@ -1,0 +1,62 @@
+[
+    {
+        "Service_name": "Oil Change",
+        "Service_description": "Engine oil and filter replacement",
+        "Service_price": 40.0,
+        "Service_duration_min": 30
+    },
+    {
+        "Service_name": "Brake Inspection",
+        "Service_description": "Complete brake system check and maintenance",
+        "Service_price": 60.0,
+        "Service_duration_min": 45
+    },
+    {
+        "Service_name": "Tire Rotation",
+        "Service_description": "Rotate tires to ensure even wear",
+        "Service_price": 25.0,
+        "Service_duration_min": 30
+    },
+    {
+        "Service_name": "Battery Replacement",
+        "Service_description": "Remove old battery and install new one",
+        "Service_price": 120.0,
+        "Service_duration_min": 40
+    },
+    {
+        "Service_name": "Engine Diagnostic",
+        "Service_description": "Comprehensive engine check using diagnostic tools",
+        "Service_price": 80.0,
+        "Service_duration_min": 60
+    },
+    {
+        "Service_name": "Wheel Alignment",
+        "Service_description": "Adjust wheel angles to manufacturer specifications",
+        "Service_price": 70.0,
+        "Service_duration_min": 50
+    },
+    {
+        "Service_name": "Air Filter Replacement",
+        "Service_description": "Replace engine air filter for better performance",
+        "Service_price": 30.0,
+        "Service_duration_min": 20
+    },
+    {
+        "Service_name": "Coolant Flush",
+        "Service_description": "Flush old coolant and refill with new coolant",
+        "Service_price": 90.0,
+        "Service_duration_min": 45
+    },
+    {
+        "Service_name": "Transmission Repair",
+        "Service_description": "Repair and maintenance of transmission system",
+        "Service_price": 400.0,
+        "Service_duration_min": 180
+    },
+    {
+        "Service_name": "AC Recharge",
+        "Service_description": "Recharging the air conditioning system",
+        "Service_price": 110.0,
+        "Service_duration_min": 60
+    }
+]

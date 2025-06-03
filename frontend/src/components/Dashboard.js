@@ -2,7 +2,21 @@
 import { useState, useEffect } from "react";
 import styles from "@/styles/dashboard.module.css";
 import { useRouter } from "next/navigation";
-
+import {
+  User,
+  Bell,
+  ChevronLeft,
+  UserCircle,
+  Phone,
+  Smartphone,
+  LogOut,
+  Clock,
+  Car,
+  BookText,
+  Home,
+  FileText,
+  BadgeCheck,
+} from "lucide-react";
 import { getUserBonus } from "@/api/bonus";
 import { logout } from "@/utils/logout";
 import { useUser } from "../context/UserContext";
@@ -13,6 +27,9 @@ export default function Dashboard({
   toProfile,
   toContact,
   toChangePhone,
+  toBooking,
+  toAddCar,
+  toNotification,
 }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const router = useRouter();
@@ -32,7 +49,8 @@ export default function Dashboard({
         const bonusPoint = await getUserBonus(token);
         setBonus(bonusPoint);
       } catch (err) {
-        console.error("Бонус оноо олдсонгүй!", error);
+        router.push('/');
+        console.log("Бонус оноо олдсонгүй!");
       }
     }
     fetchBonus();
@@ -43,23 +61,28 @@ export default function Dashboard({
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
+        {/* --- Topbar --- */}
         <div className={styles.topbar}>
+          <div>
+            <button
+              className={styles.iconBtn}
+              onClick={() => setDrawerOpen(true)}
+              aria-label="Profile drawer"
+            >
+              <User size={26} />
+            </button>
+
+            <span className={styles.userName}>{user?.name || "Нэвтрээгүй"}</span>
+          </div>
           <button
             className={styles.iconBtn}
-            onClick={() => setDrawerOpen(true)}
+            aria-label="Notifications"
+            onClick={() => navigateTo(toNotification)}
           >
-            <span role="img" aria-label="profile">
-              👤
-            </span>
-          </button>
-          <span className={styles.userName}>{user?.name || "Нэвтрээгүй"}</span>
-          <button className={styles.iconBtn}>
-            <span role="img" aria-label="bell">
-              🔔
-            </span>
+            <Bell size={25} />
           </button>
         </div>
-
+        {/* --- Drawer --- */}
         {drawerOpen && (
           <div
             className={styles.drawerOverlay}
@@ -69,30 +92,31 @@ export default function Dashboard({
               <button
                 className={styles.drawerBack}
                 onClick={() => setDrawerOpen(false)}
+                aria-label="Back"
               >
-                ←
+                <ChevronLeft size={22} />
               </button>
               <ul>
                 <li onClick={() => navigateTo(toProfile)}>
-                  <span>👤</span> Хувийн мэдээлэл
+                  <UserCircle size={20} style={{ color: "green" }} /> Хувийн мэдээлэл
                 </li>
                 <li onClick={() => navigateTo(toContact)}>
-                  <span>📞</span> Холбоо барих
+                  <Phone size={20} style={{ color: "green" }} /> Холбоо барих
                 </li>
                 <li onClick={() => navigateTo(toChangePhone)}>
-                  <span>📱</span> Утасны дугаар өөрчлөх
+                  <Smartphone size={20} style={{ color: "green" }} /> Утасны дугаар өөрчлөх
                 </li>
                 <li
                   className={styles.logout}
                   onClick={() => logout()}
                 >
-                  <span style={{ color: "#f23" }}>🚪</span> Гарах
+                  <LogOut size={20} color="#f23" /> Гарах
                 </li>
               </ul>
             </div>
           </div>
         )}
-
+        {/* --- Main Content --- */}
         <div className={styles.content}>
           <div
             className={styles.bonusBox}
@@ -107,43 +131,51 @@ export default function Dashboard({
             </div>
           </div>
 
-          <button className={styles.timeOrderBtn}>
-            <span role="img" aria-label="clock">
-              ⏰
-            </span>{" "}
+          <button className={styles.timeOrderBtn} onClick={() => navigateTo(toBooking)}>
+            <Clock size={21} />
             Цаг захиалах
           </button>
 
           <div className={styles.myCarsSection}>
-            <div>Миний машинууд</div>
-            <button className={styles.addCarBtn}>+ Машин нэмэх</button>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <Car size={19} color="green" />
+              <span>Миний машинууд</span>
+            </div>
+            <button className={styles.addCarBtn}
+              onClick={() => navigateTo(toAddCar)}>
+              + Машин нэмэх
+            </button>
           </div>
 
           <div className={styles.serviceSection}>
-            <div className={styles.serviceHeader}>Хугацаат үйлчилгэээнүүд</div>
+            <div className={styles.serviceHeader}>
+              <BadgeCheck
+                size={17}
+                style={{ marginRight: 7, marginBottom: -3, color: "green" }}
+              />
+              Хугацаат үйлчилгэээнүүд
+            </div>
             <div className={styles.serviceEmpty}>
-              <span role="img" aria-label="book">
-                📖
-              </span>
+              <BookText size={22} color="grey" />
               <div className={styles.serviceTitle}>Хугацаат үйлчилгэээнүүд</div>
               <div>Одоогоор хугацаат үйлчилгээ байхгүй байна</div>
             </div>
           </div>
         </div>
-
+        {/* --- Bottom Navigation (mobile) --- */}
         <nav className={styles.bottomNav}>
           <button>
-            🏠
+            <Home size={21} color="green" />
             <br />
             Нүүр
           </button>
           <button>
-            📜
+            <FileText size={21} color="green" />
             <br />
             Түүх
           </button>
           <button>
-            🪪
+            <BadgeCheck size={21} color="blue" />
             <br />
             Гишүүнчлэл
           </button>

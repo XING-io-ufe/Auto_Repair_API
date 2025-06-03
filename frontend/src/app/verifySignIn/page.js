@@ -62,9 +62,11 @@ export default function VerifySignInPage() {
     setSubmitting(true);
     try {
       const response = await verifySignInOTP({ phone, otp: code.join("") });
-
       localStorage.setItem("token", response.token);
+      localStorage.setItem('userId', response.user.id);
       showToast(response.message, "success");
+
+
       setTimeout(() => {
         router.push("/dashboard");
       }, 1500);

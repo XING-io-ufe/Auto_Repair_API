@@ -1,0 +1,10 @@
+.layoutShellWrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.mainContent {
+  flex: 1 0 auto;
+  width: 100%;
+}

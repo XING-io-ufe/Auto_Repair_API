@@ -1,0 +1,133 @@
+.pageWrapper {
+  background: #ededed;
+  min-height: 100vh;
+  /* padding: 22px 0; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card {
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 2px 18px rgba(39, 105, 181, 0.08);
+  padding: 28px 18px 26px 18px;
+  width: 100%;
+  /* max-width: 97vw; */
+  /* margin-top: 28px; */
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 17px;
+}
+
+.logo {
+  width: 120px;
+  flex-shrink: 0;
+}
+.title {
+  font-size: 1.22rem;
+  font-weight: 600;
+  color: #262626;
+  flex: 1 1 0%;
+  text-align: center;
+  /* margin: auto; */
+}
+
+.pagingIcons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.iconBtn {
+  background: none;
+  border: none;
+  padding: 6px 8px;
+  border-radius: 6px;
+  color: #1bb36d;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: background 0.13s;
+}
+.iconBtn:active,
+.iconBtn:hover {
+  background: #e5ffe5;
+}
+.pageNum {
+  font-size: 1.11rem;
+  margin-left: 5px;
+  color: #1e8c3a;
+  font-weight: 600;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  background: #fff;
+}
+.table th,
+.table td {
+  border-bottom: 1px solid #e4e4e4;
+  text-align: left;
+  padding: 11px 9px;
+  font-size: 1.02rem;
+  font-weight: 500;
+}
+.table th {
+  color: #595959;
+  font-weight: 600;
+  background: #f4f4f4;
+}
+.table td {
+  color: #242424;
+  font-weight: 400;
+  background: #fff;
+}
+.editBtn {
+  color: #22a342;
+  background: none;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1.01rem;
+  transition: color 0.14s;
+}
+.editBtn:hover {
+  color: #15812b;
+}
+.deleteBtn {
+  color: #e72c13;
+  background: none;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1.01rem;
+  transition: color 0.14s;
+}
+.deleteBtn:hover {
+  color: #c00;
+}
+
+/* Responsive */
+@media (max-width: 620px) {
+  .card {
+    width: 100vw;
+    padding: 8px 0 18px 0;
+    border-radius: 0;
+  }
+  .header {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .table th,
+  .table td {
+    font-size: 0.95rem;
+    padding: 8px 5px;
+  }
+}

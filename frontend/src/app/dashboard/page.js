@@ -9,7 +9,9 @@ export default function dashboardPage() {
         toProfile="/profile"
         toContact="/contact"
         toChangePhone="/changePhone"
-        
+        toBooking="/booking"
+        toAddCar="/addCar"
+        toNotification="/notification"
       />
     </>
   );

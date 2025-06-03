@@ -1,0 +1,42 @@
+[
+    {
+        "Car_Manufacturer_ID": 1,
+        "Car_Manufacturer_list": "Toyota"
+    },
+    {
+        "Car_Manufacturer_ID": 2,
+        "Car_Manufacturer_list": "Ford"
+    },
+    {
+        "Car_Manufacturer_ID": 3,
+        "Car_Manufacturer_list": "Honda"
+    },
+    {
+        "Car_Manufacturer_ID": 4,
+        "Car_Manufacturer_list": "BMW"
+    },
+    {
+        "Car_Manufacturer_ID": 5,
+        "Car_Manufacturer_list": "Mercedes-Benz"
+    },
+    {
+        "Car_Manufacturer_ID": 6,
+        "Car_Manufacturer_list": "Audi"
+    },
+    {
+        "Car_Manufacturer_ID": 7,
+        "Car_Manufacturer_list": "Hyundai"
+    },
+    {
+        "Car_Manufacturer_ID": 8,
+        "Car_Manufacturer_list": "Kia"
+    },
+    {
+        "Car_Manufacturer_ID": 9,
+        "Car_Manufacturer_list": "Tesla"
+    },
+    {
+        "Car_Manufacturer_ID": 10,
+        "Car_Manufacturer_list": "Volkswagen"
+    }
+]

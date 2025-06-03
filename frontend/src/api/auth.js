@@ -45,4 +45,15 @@ export const userUpdate = async ({ token, lastName, firstName, phone, email }) =
     });
     return response.data;
 };
+export const phoneUpdate = async ({ token, newPhone }) => {
+    const response = await api.put("/user/phoneUpdate", {
+        newPhone
+    }, {
+        headers: {
+            authorization: `Bearer ${token}`,
+        },
+    });
+    return response.data;
+};
+
 

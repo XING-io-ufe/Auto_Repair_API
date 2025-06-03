@@ -73,3 +73,46 @@
   color: #212121;
   font-size: 1rem;
 }
+.bonusCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  background: #fff;
+  border: 2px solid var(--primary);
+  border-radius: 11px;
+  padding: 18px 22px;
+  margin-bottom: 28px;
+  width: 98%;
+  max-width: 520px;
+  transition: box-shadow 0.17s;
+  box-shadow: 0 3px 24px rgba(40, 40, 40, 0.03);
+}
+
+.bonusIcon {
+  background: #fff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  min-height: 40px;
+  margin-right: 6px;
+  margin-top: 4px;
+}
+
+.bonusInfo {
+  flex: 1;
+}
+
+.bonusMessage {
+  font-weight: 500;
+  font-size: 1rem;
+  color: #222;
+  margin-bottom: 8px;
+  line-height: 1.48;
+}
+
+.bonusDate {
+  font-size: 0.92rem;
+  color: #888;
+}

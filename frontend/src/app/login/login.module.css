@@ -6,7 +6,16 @@
   background: #f5f5f5;
   position: relative;
 }
-
+.backBtn {
+  background: none;
+  border: none;
+  font-size: 1.55rem;
+  color: green;
+  cursor: pointer;
+  padding: 2px 10px 2px 2px;
+  /* background: grey; */
+  align-self: flex-start;
+}
 .toast {
   position: fixed;
   top: 30px;

@@ -1,0 +1,21 @@
+.dayButtons {
+  display: flex;
+  gap: 7px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.dayBtn {
+  background: #f3f3f3;
+  border: 1.3px solid #bbb;
+  border-radius: 7px;
+  padding: 7px 13px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.13s, border 0.13s;
+}
+.dayBtn.selected,
+.dayBtn:active {
+  background: #1bb36d;
+  color: #fff;
+  border: 1.3px solid #1bb36d;
+}

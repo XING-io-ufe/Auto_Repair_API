@@ -17,7 +17,6 @@
 
 .topbar {
   width: 100%;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -32,9 +31,13 @@
   font-size: 1.5rem;
   cursor: pointer;
   padding: 2px 6px;
+  /* background: #1bb36d; */
+  color: green;
 }
 
 .userName {
+  /* float: left; */
+  margin-left: 1rem;
   font-weight: 600;
   font-size: 1rem;
 }

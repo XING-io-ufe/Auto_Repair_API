@@ -1,5 +1,5 @@
 import express from 'express';
-import { signInPhone, signUpPhone, userUpdate } from '../controllers/auth.controller';
+import { phoneUpdate, signInPhone, signUpPhone, userUpdate } from '../controllers/auth.controller';
 import { verifySignInOTP, verifySignUpOTP } from '../controllers/otp.controller';
 import { asyncHandler } from '../utils/asyncHandler';
 import { verifyToken } from '../middlewares/verifyToken';
@@ -13,5 +13,7 @@ router.post('/signin', asyncHandler(signInPhone));
 router.post('/signin/verify', asyncHandler(verifySignInOTP));
 
 router.put('/update/', asyncHandler(verifyToken), asyncHandler(userUpdate));
+
+router.put('/phoneUpdate/', asyncHandler(verifyToken), asyncHandler(phoneUpdate));
 
 export default router;

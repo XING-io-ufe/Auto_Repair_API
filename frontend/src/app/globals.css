@@ -35,3 +35,10 @@ a {
   --success: #52c41a;
   --info: #2b71db;
 }
+:root {
+  --primary: #1dc972;
+  --navbar-bg: #fff;
+  --navbar-btn-bg: #fff;
+  --navbar-btn-radius: 8px;
+  --navHover: #dffbe5;
+}

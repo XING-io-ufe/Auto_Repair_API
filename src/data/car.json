@@ -1,0 +1,42 @@
+[
+    {
+        "Car_ID": 1,
+        "Car_list": "Camry"
+    },
+    {
+        "Car_ID": 2,
+        "Car_list": "Mustang"
+    },
+    {
+        "Car_ID": 3,
+        "Car_list": "Civic"
+    },
+    {
+        "Car_ID": 4,
+        "Car_list": "X5"
+    },
+    {
+        "Car_ID": 5,
+        "Car_list": "C-Class"
+    },
+    {
+        "Car_ID": 6,
+        "Car_list": "A4"
+    },
+    {
+        "Car_ID": 7,
+        "Car_list": "Elantra"
+    },
+    {
+        "Car_ID": 8,
+        "Car_list": "Sorento"
+    },
+    {
+        "Car_ID": 9,
+        "Car_list": "Model 3"
+    },
+    {
+        "Car_ID": 10,
+        "Car_list": "Golf"
+    }
+]

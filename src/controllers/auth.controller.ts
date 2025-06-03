@@ -124,3 +124,30 @@ export const userUpdate = async (req: Request, res: Response, next: NextFunction
         return res.status(500).json({ message: 'Амжилгүй хүсэлт!' });
     }
 };
+export const phoneUpdate = async (req: Request, res: Response, next: NextFunction) => {
+    const userId = (req as any).user?.id;
+    if (!userId) {
+        return res.status(400).json({ message: 'Хэрэглэгч олдсонгүй!' });
+    }
+    const { newPhone } = req.body;
+
+    const fullPhone = `976${newPhone}`;
+
+    try {
+
+        const updatedPhone = await prisma.user.update({
+            where: { User_ID: userId },
+            data: {
+                User_phone: fullPhone,
+                User_update_at: expiresTime(0),
+            },
+            select: {
+                User_ID: true,
+                User_phone: true,
+            },
+        });
+        return res.status(200).json({ message: "Мэдээлэл амжилттай шинэчлэгдлээ", updatedPhone });
+    } catch (error) {
+        return res.status(500).json({ message: 'Амжилгүй хүсэлт!' });
+    }
+};

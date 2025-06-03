@@ -1,0 +1,103 @@
+.plateInputsGrid {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin-bottom: 2px;
+}
+.plateSeparator {
+  display: inline-block;
+  width: 4rem;
+  height: 1px;
+}
+.plateDigit,
+.plateLetter {
+  width: 38px;
+  height: 40px;
+  font-size: 1.24rem;
+  text-align: center;
+  margin: 0 2px;
+  border: 1.5px solid #c2c2c2;
+  background: #f5f7fa;
+  border-radius: 7px;
+  outline: none;
+  transition: border 0.14s, background 0.14s;
+}
+.plateLabelsRow {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  gap: 6px;
+  margin-bottom: 8px;
+  /* background: #17955c; */
+}
+.plateDigit:focus,
+.plateLetter:focus {
+  border: 1.5px solid #1bb36d;
+  background: #eefaf3;
+}
+.plateSeparator {
+  width: 28px;
+  height: 1px;
+  background: none;
+  display: inline-block;
+}
+
+.plateLabel {
+  color: #727272;
+  font-size: 0.99rem;
+  font-weight: 500;
+  min-width: 38px;
+  text-align: center;
+  /* background: #1bb36d; */
+  margin-right: 5.5rem;
+}
+.plateLabels {
+  color: #727272;
+  font-size: 0.99rem;
+  font-weight: 500;
+  min-width: 38px;
+  text-align: center;
+  /* background: #1bb36d; */
+  margin-left: 6rem;
+}
+
+@media (max-width: 600px) {
+  .plateInputsRow {
+    gap: 10px;
+  }
+  .plateDigit,
+  .plateLetter {
+    width: 30px;
+    height: 35px;
+    font-size: 1rem;
+  }
+  .plateLabel {
+    margin-right: 4.5rem;
+  }
+  .plateLabels {
+    margin-left: 5rem;
+  }
+}
+@media (max-width: 400px) {
+  .plateDigit,
+  .plateLetter {
+    width: 25px;
+    height: 30px;
+    font-size: 14px;
+  }
+  .plateLabel {
+    margin-right: 4rem;
+  }
+  .plateLabels {
+    margin-left: 4rem;
+  }
+}
+@media (max-width: 300px) {
+  .plateLabel {
+    margin-right: 3rem;
+  }
+  .plateLabels {
+    margin-left: 3.5rem;
+  }
+}

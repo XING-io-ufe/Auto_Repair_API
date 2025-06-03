@@ -1,0 +1,87 @@
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f4f4f4;
+}
+.logoBox {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 2rem;
+}
+.logoBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.form {
+  width: 330px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.input {
+  padding: 14px 12px;
+  font-size: 1.1rem;
+  border: 1.5px solid #3cc974;
+  border-radius: 7px;
+  background: #fff;
+  outline: none;
+  transition: border 0.16s;
+}
+.input:focus {
+  border: 1.5px solid #17955c;
+}
+.loginBtn {
+  background: #2cb15a;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  padding: 13px 0;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.loginBtn:hover {
+  background: #17955c;
+}
+.registerBtn {
+  background: #fff;
+  color: #25b144;
+  border: 1.5px solid #2cb15a;
+  border-radius: 7px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  padding: 13px 0;
+  cursor: pointer;
+  transition: border 0.15s, color 0.15s;
+}
+.registerBtn:hover {
+  border: 1.5px solid #17955c;
+  color: #17955c;
+}
+.toast {
+  position: fixed;
+  top: 44px;
+  right: 28px;
+  padding: 12px 24px;
+  border-radius: 9px;
+  font-size: 1rem;
+  font-weight: 600;
+  z-index: 200;
+  background: #ffe0e0;
+  color: #c20000;
+  box-shadow: 0 3px 20px rgba(180, 50, 30, 0.07);
+}
+.toastSuccess {
+  background: #21ba62;
+  color: #fff;
+}
+.toastError {
+  background: #f95d5d;
+  color: #fff;
+}

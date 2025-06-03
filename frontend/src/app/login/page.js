@@ -75,9 +75,17 @@ export default function LoginPage() {
         >
           {toast.msg}
         </div>
-      )}
+      )
+      }
 
       <div className={styles.loginBox}>
+        <button
+          className={styles.backBtn}
+          aria-label="Буцах"
+          onClick={() => router.back()}
+        >
+          &#8592;
+        </button>
         <img src="/login.png" alt="GoService" className={styles.logo} />
         <form className={styles.form} onSubmit={handleSubmit}>
           <input
@@ -102,6 +110,6 @@ export default function LoginPage() {
           </button>
         </form>
       </div>
-    </div>
+    </div >
   );
 }

@@ -1,0 +1,133 @@
+.wrapper {
+  min-height: 100vh;
+  background: #ededed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 22px rgba(100, 120, 130, 0.07);
+  width: 420px;
+  max-width: 98vw;
+  padding: 44px 32px 36px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.heading {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  text-align: center;
+  margin-bottom: 6px;
+  margin-top: 0;
+  letter-spacing: 0.04em;
+}
+.line {
+  width: 100%;
+  height: 1.5px;
+  background: #ececec;
+  margin: 18px 0 18px 0;
+  border-radius: 3px;
+}
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.instruction {
+  font-size: 1.13rem;
+  color: #222;
+  font-weight: 500;
+  margin-bottom: 22px;
+  text-align: center;
+  line-height: 1.6;
+}
+.otpInputs {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  margin-bottom: 38px;
+}
+.otpInput {
+  width: 38px;
+  height: 40px;
+  font-size: 1.44rem;
+  text-align: center;
+  border: 1.5px solid #868686;
+  border-radius: 8px;
+  outline: none;
+  background: #f4f4f4;
+  transition: border 0.14s;
+}
+.otpInput:focus {
+  border: 1.5px solid #16955e;
+  background: #f7fff8;
+}
+.verifyBtn {
+  width: 260px;
+  background: #979b98;
+  color: #222;
+  border: none;
+  border-radius: 9px;
+  font-size: 1.04rem;
+  font-weight: 500;
+  padding: 13px 0;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.14s;
+  letter-spacing: 0.01em;
+}
+.verifyBtn:enabled {
+  background: #20ba6e;
+  color: #fff;
+}
+.toast {
+  position: fixed;
+  top: 48px;
+  right: 28px;
+  min-width: 160px;
+  max-width: 320px;
+  z-index: 200;
+  padding: 12px 22px;
+  border-radius: 9px;
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0.97;
+  cursor: pointer;
+  box-shadow: 0 4px 22px rgba(100, 200, 99, 0.09);
+  transition: opacity 0.18s;
+  animation: fadein 0.22s;
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 0.97;
+    transform: translateY(0);
+  }
+}
+.toastError {
+  background: #f95d5d;
+  color: #fff;
+}
+.toastSuccess {
+  background: #20ba6e;
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .card {
+    padding: 16px 2vw 22px 2vw;
+    width: 98vw;
+  }
+  .verifyBtn {
+    width: 95vw;
+  }
+}
