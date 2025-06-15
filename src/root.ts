@@ -15,7 +15,7 @@ import serviceData from './routes/service.routes';
 import manufacturerData from './routes/manufacturer.routes';
 import carData from './routes/car.routes';
 import booking from './routes/booking.routes';
-import { addedCar } from './controllers//car.controller';
+import addedCar from './routes/car.routes';
 import url from './utils/url';
 
 
@@ -40,7 +40,7 @@ app.use(`${url.ADDRESS}/seed`, branchData);
 app.use(`${url.ADDRESS}/seed`, serviceData);
 app.use(`${url.ADDRESS}/seed`, manufacturerData);
 app.use(`${url.ADDRESS}/seed`, carData);
-app.use(`${url.ADDRESS}/user`, asyncHandler(addedCar));
+app.use(`${url.ADDRESS}/user`, addedCar);
 app.use(`${url.ADDRESS}/user`, booking);
 
 // SERVER STATUS CHECK

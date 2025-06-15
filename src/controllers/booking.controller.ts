@@ -14,10 +14,6 @@ export const createBooking = async (req: Request, res: Response, next: NextFunct
     } = req.body;
 
     try {
-        // 1. Validate input
-        if (!serviceId || !branchId || !userId || !carId || !selectedDay || !selectedTime) {
-            return res.status(400).json({ message: 'Бүх талбарыг бөглөнө үү!' });
-        }
 
         // 2. Check user existence
         const user = await prisma.user.findUnique({ where: { User_ID: userId } });

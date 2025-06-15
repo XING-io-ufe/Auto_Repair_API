@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
@@ -14,8 +14,8 @@ export default function LayoutShell({ children }) {
   const { setUser } = useUser();
 
   const publicRoutes = [
-    "/", "/login", "/verifySignUp", "/verifySignIn", "/about",
-    "/admin", "/admin/login", "/admin/register"
+    "/", "/login", "/verifySignUp", "/verifySignIn", "/aboutPage",
+    "/admin", "/admin/login", "/admin/register", "/admin/verifySignIn"
   ];
 
   const hideNavFooterRoutes = [
@@ -23,20 +23,30 @@ export default function LayoutShell({ children }) {
     "/bonusScore", "/profile", "/contact", "/changePhone",
     "/booking", "/addCar", "/admin", "/notification"
   ];
+  const loggedRoutes = ["/dashboard",
+    "/bonusScore", "/profile", "/changePhone",
+    "/booking", "/addCar", "/notification"
+  ];
 
   const ifHideNavFooter = hideNavFooterRoutes.some(route =>
     pathname.startsWith(route)
   );
+  const isPublic = publicRoutes.some(route => pathname.startsWith(route));
+  const isLoggedRoutes = loggedRoutes.some(route => pathname.startsWith(route));
+
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const isPublic = publicRoutes.includes(pathname);
 
-    if (!token && !isPublic) {
-      router.replace("/404");
+    if (isLoggedRoutes && !token) {
+      router.replace("/login");
       return;
     }
 
+    if (!isPublic && !token) {
+      router.replace("/");
+      return;
+    }
     const verifyToken = async () => {
       try {
         const response = await checkToken({ token });
@@ -44,8 +54,8 @@ export default function LayoutShell({ children }) {
       } catch (err) {
         localStorage.removeItem("token");
         router.push("/");
-      }
-    };
+      };
+    }
 
     if (token) {
       verifyToken();
